@@ -1,5 +1,5 @@
 Manifest-Version: 1.0
-Main-Class: ch03.examples.spaceblaster.game.Game
+Main-Class: spaceblaster.game.Game
 Created-By: 11.0.16
 
 Name: spaceblaster/images/planetoid.gif
