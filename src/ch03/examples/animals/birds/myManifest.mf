@@ -1,0 +1,7 @@
+Manifest-Version: 1.0
+Created-By: 11.0.16
+
+Name: spaceblaster/images/planetoid.gif
+RevisionNumber: 42.7
+Artist-Temperament: moody
+Main-Class: ch03.examples.animals.birds.BlueBird
