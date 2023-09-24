@@ -1,6 +1,6 @@
 package ch04.examples;
 
-public class LangTypes {
+public class LangTypesPrimitive {
   public static void main(String[] args) {
     int foo = 42;
     System.out.println(foo);
