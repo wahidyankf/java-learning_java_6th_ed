@@ -1,5 +1,7 @@
 package ch04.examples;
 
+import java.util.Arrays;
+
 public class LangArray {
   public static void main(String[] args) {
     int[] arrayOfInts;
@@ -47,5 +49,36 @@ public class LangArray {
     } catch (ArrayIndexOutOfBoundsException e) {
       System.out.println(e.getMessage());
     }
+
+    String[] tmpVar = new String[2 * names.length];
+    System.arraycopy(names, 0, tmpVar, 0, names.length);
+    names = tmpVar;
+
+    // res: true, reference to the same address
+    System.out.println(names == tmpVar);
+
+    System.out.println("---");
+
+    byte[] bar = new byte[] { 1, 2, 3, 4, 5 };
+    byte[] barCopy = Arrays.copyOf(bar, bar.length);
+    byte[] barExpanded = Arrays.copyOf(bar, bar.length + 2);
+
+    // res: [1, 2, 3, 4, 5]
+    System.out.println(Arrays.toString(barCopy));
+    // res: [1, 2, 3, 4, 5, 0, 0]
+    System.out.println(Arrays.toString(barExpanded));
+
+    byte[] firstThree = Arrays.copyOfRange(bar, 0, 3);
+    byte[] lastThree = Arrays.copyOfRange(bar, bar.length - 3, bar.length);
+    byte[] plusTwo = Arrays.copyOfRange(bar, 2, bar.length + 2);
+
+    // res: [1, 2, 3]
+    System.out.println(Arrays.toString(firstThree));
+    // res: [3, 4, 5]
+    System.out.println(Arrays.toString(lastThree));
+    // res: [3, 4, 5, 0, 0]
+    System.out.println(Arrays.toString(plusTwo));
+
+    System.out.println("---");
   }
 }
