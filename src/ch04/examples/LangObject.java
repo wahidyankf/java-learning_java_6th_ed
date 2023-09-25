@@ -1,6 +1,6 @@
 package ch04.examples;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 public class LangObject {
   public static void main(String[] args) {
@@ -9,12 +9,12 @@ public class LangObject {
     // res: java.lang.Object@15db9742
     System.out.println(o);
 
-    int hours = new Date().getHours();
+    int hours = LocalDateTime.now().getHour();
 
     // res: 18
     System.out.println(hours);
 
     // true
-    System.out.println(new Date() instanceof Date);
+    System.out.println(LocalDateTime.now() instanceof LocalDateTime);
   }
 }
