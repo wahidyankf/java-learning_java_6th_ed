@@ -1,4 +1,4 @@
-package ch04.examples;
+package ch04_the_java_language.examples;
 
 /**
  * I think this class is possibly the most amazing thing you will

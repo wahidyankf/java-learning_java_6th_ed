@@ -1,4 +1,4 @@
-package ch04.examples;
+package ch04_the_java_language.examples;
 
 public class LangString {
   public static void main(String[] args) {

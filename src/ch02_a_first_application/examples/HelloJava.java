@@ -1,4 +1,4 @@
-package ch02.examples;
+package ch02_a_first_application.examples;
 
 import javax.swing.JFrame;
 // import javax.swing.JLabel;

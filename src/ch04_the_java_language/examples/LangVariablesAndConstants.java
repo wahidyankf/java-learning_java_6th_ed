@@ -1,4 +1,4 @@
-package ch04.examples;
+package ch04_the_java_language.examples;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
