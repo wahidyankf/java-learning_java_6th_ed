@@ -1,9 +1,9 @@
 package ch05_objects_in_java.examples;
 
 public class Apple {
-  float mass;
-  float diameter = 1.0f;
-  int x, y;
+  static float gravAccel = 9.8f;
+  static final float EARTH_ACCEL = 9.8f;
+  static int SMALL = 0, MEDIUM = 1, LARGE = 2;
 
   public static void main(String[] args) {
     Apple a1;
@@ -15,6 +15,25 @@ public class Apple {
     System.out.println(a2);
   }
 
+  float mass;
+  float diameter = 1.0f;
+  int x, y;
+  int size;
+
+  public int getSize() {
+    return size;
+  }
+
+  public void setSize(int size) {
+    this.size = size;
+  }
+
+  public void printDetails() {
+    System.out.println(" mass: " + mass);
+    System.out.println(" diameter: " + diameter);
+    System.out.println(" position: (" + x + ", " + y + ")");
+  }
+
   boolean isTouching(Apple other) {
     double xdiff = x - other.x;
     double ydiff = y - other.y;
@@ -23,9 +42,12 @@ public class Apple {
     return distance < diameter / 2 + other.diameter / 2;
   }
 
-  public void printDetails() {
-    System.out.println(" mass: " + mass);
-    System.out.println(" diameter: " + diameter);
-    System.out.println(" position: (" + x + ", " + y + ")");
+  float getWeight() {
+    return mass * gravAccel;
   }
+
+  void resetEverything() {
+    setSize(MEDIUM);
+  }
+
 }
