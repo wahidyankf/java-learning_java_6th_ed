@@ -3,7 +3,9 @@ package ch05_objects_in_java.examples;
 public class Apple {
   static float gravAccel = 9.8f;
   static final float EARTH_ACCEL = 9.8f;
-  static int SMALL = 0, MEDIUM = 1, LARGE = 2;
+  public static final int SMALL = 0;
+  public static final int MEDIUM = 1;
+  public static final int LARGE = 2;
 
   public static void main(String[] args) {
     Apple a1;
@@ -24,13 +26,26 @@ public class Apple {
     return size;
   }
 
+  public static String[] getAppleSizes() {
+    // return the names of our constants
+    return new String[] { "SMALL", "MEDIUM", "LARGE" };
+  }
+
   public void setSize(int size) {
     this.size = size;
   }
 
   public void printDetails() {
     System.out.println(" mass: " + mass);
-    System.out.println(" diameter: " + diameter);
+    String[] niceNames = getAppleSizes();
+    if (diameter < 5.0f) {
+      System.out.println(niceNames[SMALL]);
+    } else if (diameter < 10.0f) {
+      System.out.println(niceNames[MEDIUM]);
+    } else {
+      System.out.println(niceNames[LARGE]);
+    }
+
     System.out.println(" position: (" + x + ", " + y + ")");
   }
 
@@ -50,4 +65,17 @@ public class Apple {
     setSize(MEDIUM);
   }
 
+  public void moveTo(int x, int y) {
+    System.out.println("Moving apple to " + x + ", " + y);
+
+    this.x = x;
+
+    // store the new y value if it is high enough
+    if (y > diameter) {
+      this.y = y;
+    } else {
+      // otherwise set y to the height of the apple
+      this.y = (int) diameter;
+    }
+  }
 }
