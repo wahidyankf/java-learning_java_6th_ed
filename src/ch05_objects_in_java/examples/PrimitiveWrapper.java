@@ -5,7 +5,7 @@ import java.util.List;
 
 public class PrimitiveWrapper {
   public static void main(String[] args) {
-    Double size = new Double(32.76);
+    Double size = Double.valueOf(32.76);
 
     double d = size.doubleValue();
     float f = size.floatValue();
@@ -23,9 +23,9 @@ public class PrimitiveWrapper {
 
     // ------------------------------
 
-    List<Integer> myNumbers = new ArrayList();
-    Integer thirtyTree = new Integer(33);
-    myNumbers.add(thirtyTree);
+    List<Integer> myNumbers = new ArrayList<>();
+    Integer thirtyThree = Integer.valueOf(33);
+    myNumbers.add(thirtyThree);
 
     // res: [33]
     System.out.println(myNumbers);
