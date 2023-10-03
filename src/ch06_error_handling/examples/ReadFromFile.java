@@ -12,6 +12,8 @@ public class ReadFromFile {
       System.out.println("Exception caught: " + e);
     }
 
+    System.out.println("---");
+
     try {
       openConnection();
     } catch (ExpandVetoException e) {
@@ -24,6 +26,8 @@ public class ReadFromFile {
       e.printStackTrace();
     }
 
+    System.out.println("---");
+
     try {
       // complex, deeply nested task
     } catch (Exception e) {
@@ -31,22 +35,49 @@ public class ReadFromFile {
       e.printStackTrace(System.err);
     }
 
+    System.out.println("---");
+
     try {
       checkRead(null);
     } catch (SecurityException e) {
       System.out.println(e.getMessage());
     }
 
+    System.out.println("---");
+
     // get some input from a file and parse it
     try {
       Object input = null;
       parseStream(input);
-
     } catch (ParseException pe) {
       // bad input... we can even tell them which line was bad!
       System.out.println("Error on line " + pe.getLineNumber());
     } catch (IOException ioe) {
       // other, low-level communication problems
+    }
+
+    System.out.println("---");
+
+    try {
+      // Do something here
+      System.out.println("Doing something... for finally...");
+      throw new MyRuntimeException("MyRuntimeException");
+    } catch (Exception e) {
+      System.out.println("Exception caught: " + e);
+    } finally {
+      // Always do this
+      System.out.println("Always do this...");
+    }
+
+    System.out.println("---");
+
+    // try-with-resources
+    // resource will be closed automatically after the try block
+    // MyResource implements AutoCloseable
+    try (MyResource resource = new MyResource()) {
+      resource.doSomething();
+    } catch (Exception e) {
+      System.out.println("Exception caught: " + e);
     }
 
     System.out.println("Program finished...");
@@ -109,5 +140,16 @@ class MyException2 extends Exception {
 class MyRuntimeException extends RuntimeException {
   public MyRuntimeException(String message) {
     super(message);
+  }
+}
+
+class MyResource implements AutoCloseable {
+  public void doSomething() throws Exception {
+    // ...
+  }
+
+  @Override
+  public void close() throws Exception {
+    // ...
   }
 }
