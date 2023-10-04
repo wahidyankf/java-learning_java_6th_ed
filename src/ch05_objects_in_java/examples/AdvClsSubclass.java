@@ -4,7 +4,7 @@ public class AdvClsSubclass {
 
 }
 
-class Animal {
+class Animal2 {
   float weight;
 
   void eat() {
@@ -13,7 +13,7 @@ class Animal {
   // other animal stuff
 }
 
-class Mammal extends Animal {
+class Mammal extends Animal2 {
   // inherits weight
   int heartRate;
 
