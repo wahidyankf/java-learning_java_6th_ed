@@ -10,6 +10,16 @@ public class ThreadsDemo {
     Animator2 animator2 = new Animator2();
     Thread myThread2 = new Thread(animator2);
     myThread2.start();
+
+    try {
+      // the current thread
+      Thread.sleep(2000);
+    } catch (InterruptedException e) {
+      e.printStackTrace();
+    }
+
+    System.out.println("after 2 second");
+
   }
 
 }
