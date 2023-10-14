@@ -2,7 +2,7 @@ package ch09_threads.examples;
 
 import java.util.LinkedList;
 
-public class URLDemo {
+public class URLQueueWithVThreadDemo {
   public static void main(String args[]) {
     URLQueue queue = new URLQueue();
     URLProducer p1 = new URLProducer("P1", 10, queue);
@@ -11,18 +11,15 @@ public class URLDemo {
     URLConsumer c2 = new URLConsumer("C2", queue);
 
     System.out.println("Starting...");
-    Thread tp1 = new Thread(p1);
-    tp1.start();
-    Thread tp2 = new Thread(p2);
-    tp2.start();
-    Thread tc1 = new Thread(c1);
-    tc1.start();
-    Thread tc2 = new Thread(c2);
-    tc2.start();
+    Thread vp1 = Thread.startVirtualThread(p1);
+    Thread vp2 = Thread.startVirtualThread(p2);
+    Thread vc1 = Thread.startVirtualThread(c1);
+    Thread vc2 = Thread.startVirtualThread(c2);
+
     try {
       // Wait for the producers to finish creating urls
-      tp1.join();
-      tp2.join();
+      vp1.join();
+      vp2.join();
     } catch (InterruptedException ie) {
       System.err.println("Interrupted waiting for producers to finish");
     }
@@ -32,8 +29,8 @@ public class URLDemo {
 
     try {
       // Now wait for the workers to clean out the queue
-      tc1.join();
-      tc2.join();
+      vc1.join();
+      vc2.join();
     } catch (InterruptedException ie) {
       System.err.println("Interrupted waiting for consumers to finish");
     }
