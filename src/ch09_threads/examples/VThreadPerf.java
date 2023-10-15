@@ -24,6 +24,7 @@ public class VThreadPerf {
         if (useVirtual) {
           tPool[c] = Thread.startVirtualThread(cPool[c]);
         } else {
+          // will be OOM if use real threads
           tPool[c] = new Thread(cPool[c]);
           tPool[c].start();
         }
