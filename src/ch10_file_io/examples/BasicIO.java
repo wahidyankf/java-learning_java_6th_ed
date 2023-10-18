@@ -10,6 +10,26 @@ public class BasicIO {
     OutputStream stdout = System.out;
     OutputStream stderr = System.err;
 
+    byte[] buff = new byte[1024];
+
+    try {
+      int got = System.in.read(buff);
+      System.out.println(got);
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+
+    try {
+      int waiting = System.in.available();
+      System.out.println(waiting);
+      if (waiting > 0) {
+        byte[] data = new byte[waiting];
+        System.out.println(data);
+      }
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+
     try {
       int val;
       while ((val = stdin.read()) != -1) {
