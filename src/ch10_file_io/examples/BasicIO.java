@@ -8,7 +8,7 @@ public class BasicIO {
   public static void main(String[] args) {
     InputStream stdin = System.in;
     OutputStream stdout = System.out;
-    OutputStream stderr = System.err;
+    // OutputStream stderr = System.err;
 
     byte[] buff = new byte[1024];
 
