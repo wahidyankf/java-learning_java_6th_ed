@@ -4,8 +4,10 @@ import java.io.IOException;
 import java.net.URI;
 import java.nio.file.FileSystem;
 import java.nio.file.FileSystems;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -52,11 +54,31 @@ public class JavaNIO {
     // res: /Users/sib
     System.out.println(sibPath);
 
-    System.out.println("------");
-
     Path currentRelativePath = Paths.get("");
     // res: current project path (absolute)
     System.out.println(currentRelativePath.toAbsolutePath());
 
+    System.out.println("------");
+
+    System.out.println("File operations");
+
+    Path fooPath = fs.getPath("/tmp/foo.txt");
+    Path barPath = fs.getPath("/tmp/bar.txt");
+
+    try {
+
+      if (!Files.exists(barPath)) {
+        Files.createFile(barPath);
+      }
+      if (!Files.exists(fooPath)) {
+        Files.createFile(fooPath);
+      }
+
+      System.out.println("bar.txt exists: " + Files.exists(barPath));
+      Files.copy(fooPath, fooPath.resolveSibling("bar.txt"), StandardCopyOption.REPLACE_EXISTING);
+
+    } catch (IOException e) {
+      System.out.println("Error moving file: " + e.getMessage());
+    }
   }
 }
