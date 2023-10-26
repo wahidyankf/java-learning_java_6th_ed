@@ -1,5 +1,7 @@
 package ch11_functional_approaches_in_java.examples;
 
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -7,6 +9,7 @@ import java.util.Random;
 import java.util.function.Consumer;
 import java.util.function.IntFunction;
 import java.util.function.Supplier;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 /**
@@ -73,16 +76,30 @@ public class LambdaDemo {
     System.out.println("------");
     System.out.println("stream iterators");
 
+    // res: 1, 2, 3, 4, 5
+    System.out.println("> Int Stream");
+    IntStream.iterate(1, i -> i + 1).limit(5).forEach(System.out::println);
+    System.out.println("> Custom Stream");
+    Stream.iterate(LocalDate.now(), d -> d.plus(1, ChronoUnit.DAYS))
+        .limit(5)
+        .forEach(System.out::println);
+
+    System.out.println("------");
+    System.out.println("filtering");
+
+    System.out.println("names starting with J");
+    names.stream()
+        .filter(n -> n.startsWith("J"))
+        .forEach(System.out::println);
+
   }
 }
 
 class WeekDayGenerator implements Supplier<String> {
-
   private static String[] days = { "Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat" };
   private Random randSrc = new Random();
 
   public String get() {
     return days[randSrc.nextInt(days.length)];
   }
-
 }
