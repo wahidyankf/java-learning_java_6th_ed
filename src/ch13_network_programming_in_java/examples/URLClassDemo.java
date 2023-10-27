@@ -20,6 +20,7 @@ public class URLClassDemo {
       System.out.println(aDoc);
       System.out.println(sameDoc);
       System.out.println(newWay);
+
     } catch (Exception e) {
       System.out.println("Error: " + e.getMessage());
     }
