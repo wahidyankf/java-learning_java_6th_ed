@@ -1,6 +1,7 @@
 package ch11_functional_approaches_in_java.examples;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.DoubleStream;
 
@@ -38,6 +39,17 @@ public class MappingDemo {
     System.out.println("------");
     System.out.println("Flatmaps");
 
+    int[][] board = {
+        { 2, 0, 4, 2 },
+        { 0, 3, 0, 1 },
+        { 5, 0, 1, 0 },
+        { 2, 3, 0, 2 },
+    };
+
+    // res: 2, 0, 4, 2, 0, 3, 0, 1, 5, 0, 1, 0, 2, 3, 0, 2
+    Arrays.stream(board)
+        .flatMapToInt(x -> Arrays.stream(x))
+        .forEach(System.out::println);
   }
 }
 
